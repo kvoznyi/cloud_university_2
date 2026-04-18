@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Workout Planner</title>
+    <meta name="description" content="AI-powered workout planner that recommends personalized training programs based on activity recognition." />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a class="navbar-brand" href="/">
+                <span class="brand-icon">💪</span>
+                <span class="brand-text">Workout Planner</span>
+            </a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/health" class="nav-link">Health Check</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        @RenderBody()
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Workout Planner — Cloud Computing Labs (LR1–LR5)</p>
+            <p class="footer-tech">ASP.NET Core 10 · Azure · Terraform · Prometheus · Grafana</p>
+        </div>
+    </footer>
+</body>
+</html>

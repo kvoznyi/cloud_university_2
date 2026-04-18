@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: workout-planner-web
+  namespace: workout-planner
+  labels:
+    app: workout-planner
+    component: web
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+      name: http
+  selector:
+    app: workout-planner
+    component: web
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: workout-planner-ml
+  namespace: workout-planner
+  labels:
+    app: workout-planner
+    component: ml
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5000
+      targetPort: 5000
+      protocol: TCP
+      name: http
+  selector:
+    app: workout-planner
+    component: ml

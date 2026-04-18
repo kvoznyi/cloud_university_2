@@ -1,0 +1,21 @@
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gnupg
+  - lsb-release
+
+runcmd:
+  - curl -fsSL https://get.docker.com | sh
+  - systemctl enable docker
+  - systemctl start docker
+  - usermod -aG docker azureuser
+
+  - docker login ${acr_login_server} -u ${acr_username} -p ${acr_password}
+
+  - docker pull ${acr_login_server}/${docker_image}
+  - docker run -d --name workoutplanner --restart unless-stopped -p 80:80 -p 443:443 ${acr_login_server}/${docker_image}

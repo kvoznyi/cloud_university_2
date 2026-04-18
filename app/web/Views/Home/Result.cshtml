@@ -1,0 +1,47 @@
+@model WorkoutPlanner.Models.WorkoutResponse
+@{
+    ViewData["Title"] = "Your Workout Plan";
+}
+
+<section class="result-section">
+    <h1>🎯 Your Personalized Workout Plan</h1>
+
+    <div class="result-card">
+        <div class="result-header">
+            <h2>@Model.RecognizedActivity</h2>
+            <span class="confidence-badge">
+                Confidence: @(Model.Confidence * 100):F0%
+            </span>
+        </div>
+
+        <p class="recommendation">@Model.Recommendation</p>
+
+        <div class="result-details">
+            <div class="detail-item">
+                <span class="detail-label">Duration</span>
+                <span class="detail-value">@Model.EstimatedDurationMinutes min</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Intensity</span>
+                <span class="detail-value intensity-@Model.IntensityLevel.ToLower()">
+                    @Model.IntensityLevel
+                </span>
+            </div>
+        </div>
+
+        <div class="exercises">
+            <h3>Suggested Exercises</h3>
+            <ul class="exercise-list">
+                @foreach (var exercise in Model.SuggestedExercises)
+                {
+                    <li class="exercise-item">
+                        <span class="exercise-bullet">▶</span>
+                        @exercise
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <a href="/" class="btn btn-secondary">← Try Again</a>
+</section>
